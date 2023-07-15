@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('pages.dashboard');
+});
+
+Route::get('/', function () {
+    if (Auth::user()) {
+        return redirect()->route('dashboard');
+    }
+    return view('pages.auth.login');
 });
