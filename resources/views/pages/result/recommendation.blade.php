@@ -44,7 +44,7 @@
                                     <div class="modal fade" id="addCriteria" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document" style="max-width: 1200px">
                                             <div class="modal-content">
-                                                <form action="{{ route('criteria.store') }}" method="POST">
+                                                <form action="{{ route('recommendation.store') }}" method="POST">
                                                     @csrf
                                                     @method('POST')
 
