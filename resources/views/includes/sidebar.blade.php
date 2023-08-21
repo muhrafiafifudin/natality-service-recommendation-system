@@ -34,6 +34,12 @@
                         <p>Kriteria</p>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('pasien') ? 'active' : '' }}">
+                    <a href="{{ route('user.index') }}">
+                        <i class="fas fa-th-list"></i>
+                        <p>Pasien</p>
+                    </a>
+                </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>

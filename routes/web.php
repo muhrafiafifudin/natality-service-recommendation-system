@@ -30,6 +30,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'App\Http\Controllers\Main\CriteriaController@index')->name('index');
         Route::post('/', 'App\Http\Controllers\Main\CriteriaController@store')->name('store');
         Route::match(['put', 'patch'], '/{criteria}', 'App\Http\Controllers\Main\CriteriaController@update')->name('update');
-        Route::delete('/{product}', 'App\Http\Controllers\Main\CriteriaController@destroy')->name('destroy');
+        Route::delete('/{criteria}', 'App\Http\Controllers\Main\CriteriaController@destroy')->name('destroy');
+    });
+    // User
+    Route::group(['prefix' => 'pasien', 'as' => 'user.'], function () {
+        Route::get('/', 'App\Http\Controllers\Main\UserController@index')->name('index');
+        Route::post('/', 'App\Http\Controllers\Main\UserController@store')->name('store');
+        Route::match(['put', 'patch'], '/{user}', 'App\Http\Controllers\Main\UserController@update')->name('update');
+        Route::delete('/{user}', 'App\Http\Controllers\Main\UserController@destroy')->name('destroy');
     });
 });
