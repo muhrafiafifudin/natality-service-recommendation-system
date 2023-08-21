@@ -18,21 +18,55 @@ class CriteriaSeeder extends Seeder
     {
         DB::table('criterias')->insert([
             [
-                'criteria' => 'Usia',
+                'criteria' => 'Usia ibu hamil < 16th',
+                'score' => 4,
                 'created_at' => Carbon::now()
             ],
             [
-                'criteria' => 'Keluhan',
+                'criteria' => 'Usia ibu hamil > 35th',
+                'score' => 4,
                 'created_at' => Carbon::now()
             ],
             [
-                'criteria' => 'Tensi',
+                'criteria' => 'Pernah Operasi SC',
+                'score' => 8,
                 'created_at' => Carbon::now()
             ],
             [
-                'criteria' => 'Persalinan',
+                'criteria' => 'Kurang darah',
+                'score' => 4,
                 'created_at' => Carbon::now()
-            ]
+            ],
+            [
+                'criteria' => 'Bengkak pada muka / tungkai & tekanan darah tinggi',
+                'score' => 4,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'criteria' => 'Hamil kembar 2 atau lebih',
+                'score' => 4,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'criteria' => 'Letak Sungsang',
+                'score' => 8,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'criteria' => 'Pendarahan dalam kehamilan',
+                'score' => 8,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'criteria' => 'Preeklamsia Berat / Kejang - Kejang',
+                'score' => 8,
+                'created_at' => Carbon::now()
+            ],
+            [
+                'criteria' => 'Kehamilan lebih bulan',
+                'score' => 4,
+                'created_at' => Carbon::now()
+            ],
         ]);
     }
 }

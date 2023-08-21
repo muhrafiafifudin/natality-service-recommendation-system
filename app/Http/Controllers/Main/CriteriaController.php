@@ -21,6 +21,7 @@ class CriteriaController extends Controller
         try {
             $criteria = new Criteria();
             $criteria->criteria = $request->criteria;
+            $criteria->score = $request->score;
             $criteria->save();
 
             return redirect()->route('criteria.index')->with(['success' => 'Berhasil Menambahkan Data !!']);
@@ -36,6 +37,7 @@ class CriteriaController extends Controller
 
             $criteria = Criteria::findOrFail($id);
             $criteria->criteria = $request->criteria;
+            $criteria->score = $request->score;
             $criteria->update();
 
             return redirect()->route('criteria.index')->with(['success' => 'Berhasil Mengubah Data !!']);

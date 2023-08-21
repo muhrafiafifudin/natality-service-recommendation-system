@@ -63,6 +63,10 @@
                                                             <label for="criteria">Kriteria</label>
                                                             <input type="text" class="form-control" name="criteria" placeholder="Masukkan Kriteria">
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label for="criteria">Skor</label>
+                                                            <input type="number" class="form-control" name="score" placeholder="Masukkan Skor">
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer no-bd">
                                                         <button type="submit" class="btn btn-primary">Tambah</button>
@@ -81,6 +85,7 @@
                                             <tr>
                                                 <th width="50px">No.</th>
                                                 <th>Kriteria</th>
+                                                <th>Skor</th>
                                                 <th width="50px">Aksi</th>
                                             </tr>
                                         </thead>
@@ -90,6 +95,7 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $criteria->criteria }}</td>
+                                                    <td>{{ $criteria->score }}</td>
                                                     <td>
                                                         <form action="{{ route('criteria.destroy', \Crypt::encrypt($criteria->id)) }}" method="POST">
                                                             @csrf
@@ -133,6 +139,10 @@
                                                             <div class="form-group">
                                                                 <label for="criteria">Kriteria</label>
                                                                 <input type="text" class="form-control" name="criteria" value="{{ $criteria->criteria }}" placeholder="Masukkan Kriteria">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="criteria">Skor</label>
+                                                                <input type="text" class="form-control" name="score" value="{{ $criteria->score }}" placeholder="Masukkan Skor">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer no-bd">
