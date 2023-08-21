@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::delete('/{hospital}', 'App\Http\Controllers\Main\HospitalController@destroy')->name('destroy');
     });
     // Result Recommendation
-    Route::group(['prefix' => 'rekomendasi', 'as' => 'result.'], function () {
+    Route::group(['prefix' => 'rekomendasi', 'as' => 'recommendation.'], function () {
         Route::get('/', 'App\Http\Controllers\Result\RecommendationController@index')->name('index');
         Route::post('/', 'App\Http\Controllers\Result\RecommendationController@store')->name('store');
         Route::match(['put', 'patch'], '/{result}', 'App\Http\Controllers\Result\RecommendationController@update')->name('update');

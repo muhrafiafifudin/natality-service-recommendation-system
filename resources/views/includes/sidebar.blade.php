@@ -52,8 +52,8 @@
                     </span>
                     <h4 class="text-section">Hasil Rekomendasi</h4>
                 </li>
-                <li class="nav-item {{ request()->is('hitung') ? 'active' : '' }}">
-                    <a href="#">
+                <li class="nav-item {{ request()->is('rekomendasi') ? 'active' : '' }}">
+                    <a href="{{ route('recommendation.index') }}">
                         <i class="fas fa-th-list"></i>
                         <p>Perhitungan</p>
                     </a>
