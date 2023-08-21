@@ -40,6 +40,12 @@
                         <p>Pasien</p>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('rumah-sakit') ? 'active' : '' }}">
+                    <a href="{{ route('hospital.index') }}">
+                        <i class="fas fa-th-list"></i>
+                        <p>Rumah Sakit</p>
+                    </a>
+                </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CriteriaSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(HospitalSeeder::class);
         $this->call(UserSeeder::class);
     }
 }

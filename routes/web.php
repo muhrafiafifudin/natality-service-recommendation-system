@@ -39,4 +39,18 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['put', 'patch'], '/{user}', 'App\Http\Controllers\Main\UserController@update')->name('update');
         Route::delete('/{user}', 'App\Http\Controllers\Main\UserController@destroy')->name('destroy');
     });
+    // Hospital
+    Route::group(['prefix' => 'rumah-sakit', 'as' => 'hospital.'], function () {
+        Route::get('/', 'App\Http\Controllers\Main\HospitalController@index')->name('index');
+        Route::post('/', 'App\Http\Controllers\Main\HospitalController@store')->name('store');
+        Route::match(['put', 'patch'], '/{hospital}', 'App\Http\Controllers\Main\HospitalController@update')->name('update');
+        Route::delete('/{hospital}', 'App\Http\Controllers\Main\HospitalController@destroy')->name('destroy');
+    });
+    // Result Recommendation
+    Route::group(['prefix' => 'rekomendasi', 'as' => 'result.'], function () {
+        Route::get('/', 'App\Http\Controllers\Result\RecommendationController@index')->name('index');
+        Route::post('/', 'App\Http\Controllers\Result\RecommendationController@store')->name('store');
+        Route::match(['put', 'patch'], '/{result}', 'App\Http\Controllers\Result\RecommendationController@update')->name('update');
+        Route::delete('/{result}', 'App\Http\Controllers\Result\RecommendationController@destroy')->name('destroy');
+    });
 });
