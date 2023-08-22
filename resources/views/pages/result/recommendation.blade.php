@@ -75,36 +75,38 @@
                                                         </div>
 
                                                         <div class="table-responsive mt-lg-5">
-                                                            <table id="input-recommendation-table" class="display table table-striped table-hover" >
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Pertanyaan</th>
-                                                                        <th>Jawaban</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    @php $no = 1; @endphp
-                                                                    @foreach ($criterias as $criteria)
+                                                            <div class="form-group">
+                                                                <table class="display table table-striped table-hover" >
+                                                                    <thead>
                                                                         <tr>
-                                                                            <td>{{ $no++ }}</td>
-                                                                            <td>{{ $criteria->criteria }}</td>
-                                                                            <td>
-                                                                                <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
-                                                                                    <div class="custom-control custom-radio">
-                                                                                        <input type="radio" id="ya_{{ $criteria->id }}" value="Ya" name="criteria[criteria_{{ $criteria->id }}]" class="custom-control-input">
-                                                                                        <label class="custom-control-label" for="ya_{{ $criteria->id }}">Ya</label>
-                                                                                    </div>
-                                                                                    <div class="custom-control custom-radio">
-                                                                                        <input type="radio" id="tidak_{{ $criteria->id }}" value="Tidak" name="criteria[criteria_{{ $criteria->id }}]" class="custom-control-input">
-                                                                                        <label class="custom-control-label" for="tidak_{{ $criteria->id }}">Tidak</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
+                                                                            <th width="50px">No.</th>
+                                                                            <th>Pertanyaan</th>
+                                                                            <th>Jawaban</th>
                                                                         </tr>
-                                                                    @endforeach
-                                                                </tbody>
-                                                            </table>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @php $no = 1; @endphp
+                                                                        @foreach ($criterias as $criteria)
+                                                                            <tr>
+                                                                                <td>{{ $no++ }}</td>
+                                                                                <td>{{ $criteria->criteria }}</td>
+                                                                                <td>
+                                                                                    <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
+                                                                                        <div class="custom-control custom-radio">
+                                                                                            <input type="radio" id="ya_{{ $criteria->id }}" value="Ya" name="criteria[criteria_{{ $criteria->id }}]" class="custom-control-input">
+                                                                                            <label class="custom-control-label" for="ya_{{ $criteria->id }}">Ya</label>
+                                                                                        </div>
+                                                                                        <div class="custom-control custom-radio">
+                                                                                            <input type="radio" id="tidak_{{ $criteria->id }}" value="Tidak" name="criteria[criteria_{{ $criteria->id }}]" class="custom-control-input">
+                                                                                            <label class="custom-control-label" for="tidak_{{ $criteria->id }}">Tidak</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer no-bd">
@@ -131,7 +133,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php $no = 1; @endphp
+                                            @foreach ($recommendations as $recommendation)
+                                                <tr>
+                                                    <td>{{ $no++ }}</td>
+                                                    <td>{{ $recommendation->user->name }}</td>
+                                                    <td>{{ $recommendation->user->address }}</td>
+                                                    <td>
+                                                        @if ($recommendation->result >= 12)
+                                                            <span class="badge badge-success">Dirujuk</span>
+                                                        @else
+                                                            <span class="badge badge-danger">Tidak Dirujuk</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $recommendation->hospital_id == NULL ? '-' : $recommendation->hospital->hospital }}</td>
+                                                    <td>
+                                                        <form action="{{ route('recommendation.destroy', \Crypt::encrypt($recommendation->id)) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
+                                                            <div class="form-button-action">
+                                                                <button type="submit" class="btn btn-link btn-danger">
+                                                                    <i class="fa fa-times"></i>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
