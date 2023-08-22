@@ -36,10 +36,13 @@
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
                                     <h4 class="card-title">Kriteria</h4>
-                                    <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addCriteria">
-                                        <i class="fa fa-plus mr-2"></i>
-                                        Tambah Kriteria
-                                    </button>
+
+                                    @role('admin')
+                                        <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addCriteria">
+                                            <i class="fa fa-plus mr-2"></i>
+                                            Tambah Kriteria
+                                        </button>
+                                    @endrole
 
                                     <div class="modal fade" id="addCriteria" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -86,7 +89,10 @@
                                                 <th width="50px">No.</th>
                                                 <th>Kriteria</th>
                                                 <th>Skor</th>
-                                                <th width="50px">Aksi</th>
+
+                                                @role('admin')
+                                                    <th width="50px">Aksi</th>
+                                                @endrole
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -96,22 +102,25 @@
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $criteria->criteria }}</td>
                                                     <td>{{ $criteria->score }}</td>
-                                                    <td>
-                                                        <form action="{{ route('criteria.destroy', \Crypt::encrypt($criteria->id)) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
 
-                                                            <div class="form-button-action">
-                                                                <a href="#" class="btn btn-link btn-primary" data-toggle="modal" data-target="#editCriteria_{{ $criteria->id }}">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </a>
+                                                    @role('admin')
+                                                        <td>
+                                                            <form action="{{ route('criteria.destroy', \Crypt::encrypt($criteria->id)) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
 
-                                                                <button type="submit" class="btn btn-link btn-danger">
-                                                                    <i class="fa fa-times"></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </td>
+                                                                <div class="form-button-action">
+                                                                    <a href="#" class="btn btn-link btn-primary" data-toggle="modal" data-target="#editCriteria_{{ $criteria->id }}">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </a>
+
+                                                                    <button type="submit" class="btn btn-link btn-danger">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                         </tbody>

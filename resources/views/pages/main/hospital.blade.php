@@ -36,10 +36,13 @@
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
                                     <h4 class="card-title">Rumah Sakit</h4>
-                                    <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addHospital">
-                                        <i class="fa fa-plus mr-2"></i>
-                                        Tambah Rumah Sakit
-                                    </button>
+
+                                    @role('admin')
+                                        <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addHospital">
+                                            <i class="fa fa-plus mr-2"></i>
+                                            Tambah Rumah Sakit
+                                        </button>
+                                    @endrole
 
                                     <div class="modal fade" id="addHospital" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -81,7 +84,10 @@
                                             <tr>
                                                 <th width="50px">No.</th>
                                                 <th>Rumah Sakit</th>
-                                                <th width="50px">Aksi</th>
+
+                                                @role('admin')
+                                                    <th width="50px">Aksi</th>
+                                                @endrole
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,22 +96,25 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $hospital->hospital }}</td>
-                                                    <td>
-                                                        <form action="{{ route('hospital.destroy', \Crypt::encrypt($hospital->id)) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
 
-                                                            <div class="form-button-action">
-                                                                <a href="#" class="btn btn-link btn-primary" data-toggle="modal" data-target="#editHospital_{{ $hospital->id }}">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </a>
+                                                    @role('admin')
+                                                        <td>
+                                                            <form action="{{ route('hospital.destroy', \Crypt::encrypt($hospital->id)) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
 
-                                                                <button type="submit" class="btn btn-link btn-danger">
-                                                                    <i class="fa fa-times"></i>
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </td>
+                                                                <div class="form-button-action">
+                                                                    <a href="#" class="btn btn-link btn-primary" data-toggle="modal" data-target="#editHospital_{{ $hospital->id }}">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </a>
+
+                                                                    <button type="submit" class="btn btn-link btn-danger">
+                                                                        <i class="fa fa-times"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </td>
+                                                    @endrole
                                                 </tr>
                                             @endforeach
                                         </tbody>

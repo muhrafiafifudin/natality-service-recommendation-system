@@ -46,12 +46,16 @@
                         <p>Kriteria</p>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->is('pasien') ? 'active' : '' }}">
-                    <a href="{{ route('user.index') }}">
-                        <i class="fas fa-th-list"></i>
-                        <p>Pasien</p>
-                    </a>
-                </li>
+
+                @role('admin')
+                    <li class="nav-item {{ request()->is('pasien') ? 'active' : '' }}">
+                        <a href="{{ route('user.index') }}">
+                            <i class="fas fa-th-list"></i>
+                            <p>Pasien</p>
+                        </a>
+                    </li>
+                @endrole
+
                 <li class="nav-item {{ request()->is('rumah-sakit') ? 'active' : '' }}">
                     <a href="{{ route('hospital.index') }}">
                         <i class="fas fa-th-list"></i>
