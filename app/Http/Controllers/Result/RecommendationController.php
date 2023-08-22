@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Result;
 
+use App\Models\User;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
 use App\Models\Recommendation;
@@ -14,8 +15,18 @@ class RecommendationController extends Controller
 {
     public function index()
     {
+        $user = User::findOrFail(Auth::id());
+
+        $role_id = $user->roles()->pluck('id');
+        $role_id = $role_id[0];
+
         $criterias = Criteria::all();
-        $recommendations = Recommendation::all();
+
+        if ($role_id == 1) {
+            $recommendations = Recommendation::all();
+        } else {
+            $recommendations = Recommendation::where('user_id', $user->id)->get();
+        }
 
         return view('pages.result.recommendation', compact('criterias', 'recommendations'));
     }
