@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Result;
 
+use App\Models\Hospital;
 use App\Models\User;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class RecommendationController extends Controller
         $role_id = $role_id[0];
 
         $criterias = Criteria::all();
+        $hospitals = Hospital::all();
 
         if ($role_id == 1) {
             $recommendations = Recommendation::all();
@@ -28,7 +30,7 @@ class RecommendationController extends Controller
             $recommendations = Recommendation::where('user_id', $user->id)->get();
         }
 
-        return view('pages.result.recommendation', compact('criterias', 'recommendations'));
+        return view('pages.result.recommendation', compact('criterias', 'recommendations', 'hospitals'));
     }
 
     public function store(Request $request)
@@ -69,7 +71,15 @@ class RecommendationController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $recommendation = Recommendation::findOrFail($id);
+            $recommendation->hospital_id = $request->hospital_id;
+            $recommendation->update();
+
+            return redirect()->route('recommendation.index')->with(['success' => 'Berhasil Menghapus Data !!']);
+        } catch (\Throwable $th) {
+            return redirect()->route('recommendation.index')->with(['success' => 'Berhasil Menghapus Data !!']);
+        }
     }
 
     public function destroy($id)

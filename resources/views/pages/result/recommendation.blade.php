@@ -146,7 +146,59 @@
                                                             <span class="badge badge-danger">Tidak Dirujuk</span>
                                                         @endif
                                                     </td>
-                                                    <td>{{ $recommendation->hospital_id == NULL ? '-' : $recommendation->hospital->hospital }}</td>
+                                                    <td>
+                                                        @role('admin')
+                                                            @if ($recommendation->result >= 12)
+                                                                @if (empty($recommendation->hospital_id))
+                                                                    <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addHospital">
+                                                                        Tambah Rekomendasi Rujukan
+                                                                    </button>
+
+                                                                    <div class="modal fade" id="addHospital" tabindex="-1" role="dialog" aria-labelledby="addCriteriaLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <form action="{{ route('recommendation.update', $recommendation->id) }}" method="POST">
+                                                                                    @csrf
+                                                                                    @method('PUT')
+
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="addCriteriaLabel">Tambah Rekomendasi Rujukan</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <div class="form-group">
+                                                                                            <label for="squareSelect">Rumah Sakit Rujukan</label>
+                                                                                            <select class="form-control input-square" id="squareSelect" name="hospital_id">
+                                                                                                <option>Pilih Rumah Sakit</option>
+
+                                                                                                @foreach ($hospitals as $hospital)
+                                                                                                    <option value="{{ $hospital->id }}">{{ $hospital->hospital }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @else
+                                                                    {{ $recommendation->hospital->hospital }}
+                                                                @endif
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        @endrole
+
+                                                        @role('user')
+                                                            {{ $recommendation->hospital_id == NULL ? '-' : $recommendation->hospital->hospital }}
+                                                        @endrole
+                                                    </td>
                                                     <td>
                                                         <form action="{{ route('recommendation.destroy', \Crypt::encrypt($recommendation->id)) }}" method="POST">
                                                             @csrf
