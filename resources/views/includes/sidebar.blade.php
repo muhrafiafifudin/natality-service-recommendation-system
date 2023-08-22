@@ -9,8 +9,20 @@
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            Hizrian
-                            <span class="user-level">Administrator</span>
+                            {{ Auth::user()->name }}
+
+                            @php
+                                $user = Auth::user();
+
+                                $role_id = $user->roles()->pluck('id');
+                                $role_id = $role_id[0];
+                            @endphp
+
+                            @if ($role_id == 1)
+                                <span class="user-level">Administrator</span>
+                            @else
+                                <span class="user-level">{{ Auth::user()->address }}</span>
+                            @endif
                         </span>
                     </a>
                 </div>
