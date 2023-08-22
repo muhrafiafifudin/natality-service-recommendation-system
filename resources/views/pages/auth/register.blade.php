@@ -25,13 +25,21 @@
     <body class="login">
         <div class="wrapper wrapper-login">
             <div class="container container-login animated fadeIn">
-                <h3 class="text-center">Masuk ke Sistem</h3>
+                <h3 class="text-center">Buat Akun Baru</h3>
 
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('register') }}" method="POST">
                     @csrf
                     @method('POST')
 
                     <div class="login-form">
+                        <div class="form-group">
+                            <label for="name" class="placeholder"><b>Nama</b></label>
+                            <input name="name" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address" class="placeholder"><b>Alamat</b></label>
+                            <input name="address" type="text" class="form-control" required>
+                        </div>
                         <div class="form-group">
                             <label for="email" class="placeholder"><b>Email</b></label>
                             <input name="email" type="text" class="form-control" required>
@@ -45,12 +53,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="password_confirmation" class="placeholder"><b>Konfirmasi Password</b></label>
+                            <div class="position-relative">
+                                <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" required>
+                                <div class="show-password">
+                                    <i class="flaticon-interface"></i>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group form-action-d-flex mb-3 justify-content-center">
-                            <button type="submit" class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Masuk</button>
+                            <button type="submit" class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Daftar</button>
                         </div>
                         <div class="login-account">
-                            <span class="msg">Tidak memiliki akun ?</span>
-                            <a href="{{ route('register') }}">Daftar</a>
+                            <span class="msg">Sudah memiliki akun ?</span>
+                            <a href="{{ route('login') }}">Masuk</a>
                         </div>
                     </div>
                 </form>
