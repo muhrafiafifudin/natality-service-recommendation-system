@@ -52,6 +52,12 @@
                         <p>Penyakit</p>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('pencegahan-penyakit') ? 'active' : '' }}">
+                    <a href="{{ route('prevention.index') }}">
+                        <i class="fas fa-th-list"></i>
+                        <p>Pencegahan Penyakit</p>
+                    </a>
+                </li>
 
                 @role('admin')
                     <li class="nav-item {{ request()->is('pasien') ? 'active' : '' }}">

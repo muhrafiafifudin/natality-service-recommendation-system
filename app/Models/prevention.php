@@ -15,6 +15,6 @@ class Prevention extends Model
 
     public function disease()
     {
-        return $this->belongsTo(User::class, 'disease_id');
+        return $this->belongsTo(Disease::class, 'disease_id');
     }
 }

@@ -39,6 +39,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['put', 'patch'], '/{disease}', 'App\Http\Controllers\Main\DiseaseController@update')->name('update');
         Route::delete('/{disease}', 'App\Http\Controllers\Main\DiseaseController@destroy')->name('destroy');
     });
+    // Prevention
+    Route::group(['prefix' => 'pencegahan-penyakit', 'as' => 'prevention.'], function () {
+        Route::get('/', 'App\Http\Controllers\Main\PreventionController@index')->name('index');
+        Route::post('/', 'App\Http\Controllers\Main\PreventionController@store')->name('store');
+        Route::match(['put', 'patch'], '/{prevention}', 'App\Http\Controllers\Main\PreventionController@update')->name('update');
+        Route::delete('/{prevention}', 'App\Http\Controllers\Main\PreventionController@destroy')->name('destroy');
+    });
     // User
     Route::group(['prefix' => 'pasien', 'as' => 'user.'], function () {
         Route::get('/', 'App\Http\Controllers\Main\UserController@index')->name('index');
