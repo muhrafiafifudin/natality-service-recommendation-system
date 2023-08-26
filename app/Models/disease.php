@@ -12,4 +12,9 @@ class Disease extends Model
     protected $table = 'diseases';
 
     protected $guarded = [];
+
+    public function prevention()
+    {
+        return $this->hasMany(Prevention::class);
+    }
 }

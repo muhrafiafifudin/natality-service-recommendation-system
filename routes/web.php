@@ -67,4 +67,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['put', 'patch'], '/{result}', 'App\Http\Controllers\Result\RecommendationController@update')->name('update');
         Route::delete('/{result}', 'App\Http\Controllers\Result\RecommendationController@destroy')->name('destroy');
     });
+    // Result Complaint
+    Route::group(['prefix' => 'keluhan-sakit', 'as' => 'complaint.'], function () {
+        Route::get('/', 'App\Http\Controllers\Result\ComplaintController@index')->name('index');
+        Route::post('/', 'App\Http\Controllers\Result\ComplaintController@store')->name('store');
+        Route::delete('/{complaint}', 'App\Http\Controllers\Result\ComplaintController@destroy')->name('destroy');
+    });
 });

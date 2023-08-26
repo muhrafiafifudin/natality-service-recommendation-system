@@ -80,6 +80,12 @@
                     </span>
                     <h4 class="text-section">Hasil Rekomendasi</h4>
                 </li>
+                <li class="nav-item {{ request()->is('keluhan-sakit') ? 'active' : '' }}">
+                    <a href="{{ route('complaint.index') }}">
+                        <i class="fas fa-th-list"></i>
+                        <p>Keluhan Sakit</p>
+                    </a>
+                </li>
                 <li class="nav-item {{ request()->is('rekomendasi') ? 'active' : '' }}">
                     <a href="{{ route('recommendation.index') }}">
                         <i class="fas fa-th-list"></i>
