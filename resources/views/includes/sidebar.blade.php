@@ -46,6 +46,12 @@
                         <p>Kriteria</p>
                     </a>
                 </li>
+                <li class="nav-item {{ request()->is('penyakit') ? 'active' : '' }}">
+                    <a href="{{ route('disease.index') }}">
+                        <i class="fas fa-th-list"></i>
+                        <p>Penyakit</p>
+                    </a>
+                </li>
 
                 @role('admin')
                     <li class="nav-item {{ request()->is('pasien') ? 'active' : '' }}">
