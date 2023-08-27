@@ -15,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
-Route::get('/', function () {
-    if (Auth::user()) {
-        return redirect()->route('dashboard');
-    }
-    return view('pages.auth.login');
-});
+// Route::get('/', function () {
+//     if (Auth::user()) {
+//         return redirect()->route('dashboard');
+//     }
+//     return view('pages.auth.login');
+// });
+
+Route::get('/', 'App\Http\Controllers\LandingPageController@index')->name('landing-page');
 
 Route::group(['middleware' => 'auth'], function () {
     // Dashboard
