@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Rumah Sakit
+    Sub Kriteria
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Rumah Sakit</h4>
+                    <h4 class="page-title">Sub Kriteria</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="#">
@@ -26,7 +26,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Rumah Sakit</a>
+                            <a href="#">Sub Kriteria</a>
                         </li>
                     </ul>
                 </div>
@@ -35,26 +35,26 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="card-title">Rumah Sakit</h4>
+                                    <h4 class="card-title">Sub Kriteria</h4>
 
                                     @role('admin')
-                                        <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addHospital">
+                                        <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addCriteria">
                                             <i class="fa fa-plus mr-2"></i>
-                                            Tambah Rumah Sakit
+                                            Tambah Sub Kriteria
                                         </button>
                                     @endrole
 
-                                    <div class="modal fade" id="addHospital" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal fade" id="addCriteria" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-                                                <form action="{{ route('hospital.store') }}" method="POST">
+                                                <form action="{{ route('sub-criteria.store') }}" method="POST">
                                                     @csrf
                                                     @method('POST')
 
                                                     <div class="modal-header no-bd">
                                                         <h5 class="modal-title">
                                                             <strong>
-                                                                Form Tambah Rumah Sakit
+                                                                Form Tambah Sub Kriteria
                                                             </strong>
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -63,8 +63,18 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label for="criteria">Rumah Sakit</label>
-                                                            <input type="text" class="form-control" name="hospital" placeholder="Masukkan Rumah Sakit">
+                                                            <label for="criteria">Kriteria</label>
+                                                            <select class="form-control input-square" id="squareSelect" name="criteria_id">
+                                                                <option>Pilih Kriteria</option>
+
+                                                                @foreach ($criterias as $criteria)
+                                                                    <option value="{{ $criteria->id }}">{{ $criteria->criteria }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="criteria">Sub Kriteria</label>
+                                                            <input type="text" class="form-control" name="sub_criteria" placeholder="Masukkan Sub Kriteria">
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer no-bd">
@@ -83,7 +93,8 @@
                                         <thead>
                                             <tr>
                                                 <th width="50px">No.</th>
-                                                <th>Rumah Sakit</th>
+                                                <th>Sub Kriteria</th>
+                                                <th>Kriteria</th>
 
                                                 @role('admin')
                                                     <th width="50px">Aksi</th>
@@ -92,19 +103,20 @@
                                         </thead>
                                         <tbody>
                                             @php $no = 1; @endphp
-                                            @foreach ($hospitals as $hospital)
+                                            @foreach ($sub_criterias as $sub_criteria)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $hospital->hospital }}</td>
+                                                    <td>{{ $sub_criteria->criteria->criteria }}</td>
+                                                    <td>{{ $sub_criteria->sub_criteria }}</td>
 
                                                     @role('admin')
                                                         <td>
-                                                            <form action="{{ route('hospital.destroy', \Crypt::encrypt($hospital->id)) }}" method="POST">
+                                                            <form action="{{ route('sub-criteria.destroy', \Crypt::encrypt($sub_criteria->id)) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
 
                                                                 <div class="form-button-action">
-                                                                    <a href="#" class="btn btn-link btn-primary" data-toggle="modal" data-target="#editHospital_{{ $hospital->id }}">
+                                                                    <a href="#" class="btn btn-link btn-primary" data-toggle="modal" data-target="#editSubCriteria_{{ $sub_criteria->id }}">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
 
@@ -120,18 +132,18 @@
                                         </tbody>
                                     </table>
 
-                                    @foreach ($hospitals as $hospital)
-                                        <div class="modal fade" id="editHospital_{{ $hospital->id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                    @foreach ($sub_criterias as $sub_criteria)
+                                        <div class="modal fade" id="editSubCriteria_{{ $sub_criteria->id }}" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                    <form action="{{ route('hospital.update', \Crypt::encrypt($hospital->id)) }}" method="POST">
+                                                    <form action="{{ route('sub-criteria.update', \Crypt::encrypt($sub_criteria->id)) }}" method="POST">
                                                         @csrf
                                                         @method('PUT')
 
                                                         <div class="modal-header no-bd">
                                                             <h5 class="modal-title">
                                                                 <strong>
-                                                                    Form Ubah Rumah Sakit
+                                                                    Form Ubah Sub Kriteria
                                                                 </strong>
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -140,8 +152,18 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label for="hospital">Rumah Sakit</label>
-                                                                <input type="text" class="form-control" name="hospital" value="{{ $hospital->hospital }}" placeholder="Masukkan Rumah Sakit">
+                                                                <label for="criteria">Kriteria</label>
+                                                                <select class="form-control input-square" id="squareSelect" name="criteria_id">
+                                                                    <option>Pilih Kriteria</option>
+
+                                                                    @foreach ($criterias as $criteria)
+                                                                        <option value="{{ $criteria->id }}" {{ $sub_criteria->criteria_id == $criteria->id ? 'selected' : '' }}>{{ $criteria->criteria }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="criteria">Sub Kriteria</label>
+                                                                <input type="text" class="form-control" name="criteria" value="{{ $sub_criteria->sub_criteria }}" placeholder="Masukkan Sub Kriteria">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer no-bd">

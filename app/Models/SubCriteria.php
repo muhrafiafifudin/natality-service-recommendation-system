@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hospital extends Model
+class SubCriteria extends Model
 {
     use HasFactory;
 
-    protected $table = 'hospitals';
+    protected $table = 'sub_criterias';
 
     protected $guarded = [];
+
+    public function criteria()
+    {
+        return $this->belongsTo(Criteria::class, 'criteria_id');
+    }
 }

@@ -88,7 +88,6 @@
                                             <tr>
                                                 <th width="50px">No.</th>
                                                 <th>Kriteria</th>
-                                                <th>Skor</th>
 
                                                 @role('admin')
                                                     <th width="50px">Aksi</th>
@@ -101,7 +100,6 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $criteria->criteria }}</td>
-                                                    <td>{{ $criteria->score }}</td>
 
                                                     @role('admin')
                                                         <td>

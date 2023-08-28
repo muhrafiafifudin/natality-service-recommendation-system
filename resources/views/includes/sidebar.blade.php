@@ -46,10 +46,10 @@
                         <p>Kriteria</p>
                     </a>
                 </li>
-                <li class="nav-item {{ request()->is('penyakit') ? 'active' : '' }}">
-                    <a href="{{ route('disease.index') }}">
+                <li class="nav-item {{ request()->is('sub-kriteria') ? 'active' : '' }}">
+                    <a href="{{ route('sub-criteria.index') }}">
                         <i class="fas fa-th-list"></i>
-                        <p>Penyakit</p>
+                        <p>Sub Kriteria</p>
                     </a>
                 </li>
                 <li class="nav-item {{ request()->is('pencegahan-penyakit') ? 'active' : '' }}">
@@ -68,12 +68,6 @@
                     </li>
                 @endrole
 
-                <li class="nav-item {{ request()->is('rumah-sakit') ? 'active' : '' }}">
-                    <a href="{{ route('hospital.index') }}">
-                        <i class="fas fa-th-list"></i>
-                        <p>Rumah Sakit</p>
-                    </a>
-                </li>
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
@@ -83,13 +77,7 @@
                 <li class="nav-item {{ request()->is('keluhan-sakit') ? 'active' : '' }}">
                     <a href="{{ route('complaint.index') }}">
                         <i class="fas fa-th-list"></i>
-                        <p>Keluhan Sakit</p>
-                    </a>
-                </li>
-                <li class="nav-item {{ request()->is('rekomendasi') ? 'active' : '' }}">
-                    <a href="{{ route('recommendation.index') }}">
-                        <i class="fas fa-th-list"></i>
-                        <p>Perhitungan</p>
+                        <p>Rekomendasi Pelayanan</p>
                     </a>
                 </li>
             </ul>

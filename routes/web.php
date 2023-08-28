@@ -34,6 +34,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::match(['put', 'patch'], '/{criteria}', 'App\Http\Controllers\Main\CriteriaController@update')->name('update');
         Route::delete('/{criteria}', 'App\Http\Controllers\Main\CriteriaController@destroy')->name('destroy');
     });
+    // Sub Criteria
+    Route::group(['prefix' => 'sub-kriteria', 'as' => 'sub-criteria.'], function () {
+        Route::get('/', 'App\Http\Controllers\Main\SubCriteriaController@index')->name('index');
+        Route::post('/', 'App\Http\Controllers\Main\SubCriteriaController@store')->name('store');
+        Route::match(['put', 'patch'], '/{subCriteria}', 'App\Http\Controllers\Main\SubCriteriaController@update')->name('update');
+        Route::delete('/{subCriteria}', 'App\Http\Controllers\Main\SubCriteriaController@destroy')->name('destroy');
+    });
     // Disease
     Route::group(['prefix' => 'penyakit', 'as' => 'disease.'], function () {
         Route::get('/', 'App\Http\Controllers\Main\DiseaseController@index')->name('index');

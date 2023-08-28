@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(CriteriaSeeder::class);
+        $this->call(SubCriteriaSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(HospitalSeeder::class);
         $this->call(DiseaseSeeder::class);
