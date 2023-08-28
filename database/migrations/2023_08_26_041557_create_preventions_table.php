@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('preventions', function (Blueprint $table) {
             $table->id();
-            $table->integer('disease_id');
+            $table->integer('sub_criteria_id');
             $table->string('prevention');
             $table->timestamps();
         });
