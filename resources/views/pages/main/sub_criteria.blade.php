@@ -163,7 +163,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="criteria">Sub Kriteria</label>
-                                                                <input type="text" class="form-control" name="criteria" value="{{ $sub_criteria->sub_criteria }}" placeholder="Masukkan Sub Kriteria">
+                                                                <input type="text" class="form-control" name="sub_criteria" value="{{ $sub_criteria->sub_criteria }}" placeholder="Masukkan Sub Kriteria">
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer no-bd">
