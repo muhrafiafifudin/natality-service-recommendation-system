@@ -73,16 +73,20 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-check">
-                                                            <label>Sakit Yang Dialami</label><br/>
 
-                                                            @foreach ($diseases as $disease)
-                                                                <label class="form-radio-label">
-                                                                    <input class="form-radio-input" type="radio" name="disease_id" value="{{ $disease->id }}">
-                                                                    <span class="form-radio-sign">{{ $disease->disease }}</span>
-                                                                </label>
-                                                            @endforeach
-                                                        </div>
+                                                        @foreach ($criterias as $criteria)
+                                                            <div class="form-check">
+                                                                <label>{{ $criteria->criteria }}</label><br/>
+
+                                                                @foreach ($criteria->sub_criterias as $sub_criteria)
+                                                                    <label class="form-radio-label">
+                                                                        <input class="form-radio-input" type="radio" name="sub_criteria_id_{{ $sub_criteria->id }}" value="{{ $sub_criteria->id }}">
+                                                                        <span class="form-radio-sign">{{ $sub_criteria->sub_criteria }}</span>
+                                                                    </label>
+                                                                @endforeach
+                                                            </div>
+                                                        @endforeach
+
                                                         <div class="form-group">
                                                             <label for="criteria">Detail Keluhan Yang Dialami</label>
                                                             <textarea class="form-control" name="description" rows="5"></textarea>

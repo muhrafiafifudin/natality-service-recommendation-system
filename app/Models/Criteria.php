@@ -12,4 +12,9 @@ class Criteria extends Model
     protected $table = 'criterias';
 
     protected $guarded = [];
+
+    public function sub_criterias()
+    {
+        return $this->hasMany(SubCriteria::class);
+    }
 }

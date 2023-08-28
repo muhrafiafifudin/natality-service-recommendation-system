@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Result;
 
 use App\Models\Disease;
+use App\Models\Criteria;
 use App\Models\Complaint;
+use App\Models\SubCriteria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +15,15 @@ class ComplaintController extends Controller
 {
     public function index()
     {
-        $diseases = Disease::all();
         $complaints = Complaint::all();
+        $criterias = Criteria::with('sub_criterias')->get();
 
-        return view('pages.result.complaint', compact('diseases', 'complaints'));
+        return view('pages.result.complaint', compact('complaints', 'criterias'));
     }
 
     public function store(Request $request)
     {
+        dd($request->all());
         try {
             $complaint = new Complaint();
             $complaint->user_id = Auth::user()->id;
