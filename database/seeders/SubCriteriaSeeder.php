@@ -44,11 +44,6 @@ class SubCriteriaSeeder extends Seeder
             ],
             [
                 'criteria_id' => 3,
-                'sub_criteria' => '12-16 gram/desiliter (Normal)',
-                'created_at' => Carbon::now()
-            ],
-            [
-                'criteria_id' => 3,
                 'sub_criteria' => 'HB < 10-10,9 gram/desiliter (Anemia Ringan)',
                 'created_at' => Carbon::now()
             ],

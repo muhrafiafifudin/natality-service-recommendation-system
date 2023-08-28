@@ -13,8 +13,8 @@ class Prevention extends Model
 
     protected $guarded = [];
 
-    public function disease()
+    public function sub_criteria()
     {
-        return $this->belongsTo(Disease::class, 'disease_id');
+        return $this->belongsTo(SubCriteria::class, 'sub_criteria_id');
     }
 }

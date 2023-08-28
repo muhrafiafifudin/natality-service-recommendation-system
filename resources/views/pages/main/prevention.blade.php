@@ -83,8 +83,8 @@
                                         <thead>
                                             <tr>
                                                 <th width="50px">No.</th>
-                                                <th>Penyakit</th>
-                                                <th>Pencegahan Penyakit</th>
+                                                <th>Sub Kriteria</th>
+                                                <th>Saran Pelayanan</th>
 
                                                 @role('admin')
                                                     <th width="50px">Aksi</th>
@@ -96,7 +96,7 @@
                                             @foreach ($preventions as $prevention)
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
-                                                    <td>{{ $prevention->disease->disease }}</td>
+                                                    <td>{{ $prevention->sub_criteria->sub_criteria }}</td>
                                                     <td>{{ $prevention->prevention }}</td>
 
                                                     @role('admin')
