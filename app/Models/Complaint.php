@@ -18,8 +18,8 @@ class Complaint extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function disease()
+    public function complaint_details()
     {
-        return $this->belongsTo(Disease::class, 'disease_id');
+        return $this->hasMany(ComplaintDetail::class);
     }
 }

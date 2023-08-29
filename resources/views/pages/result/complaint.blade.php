@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Rekomendasi Keluhan Sakit
+    Rekomendasi Penanganan
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="content">
             <div class="page-inner">
                 <div class="page-header">
-                    <h4 class="page-title">Rekomendasi Keluhan Sakit</h4>
+                    <h4 class="page-title">Rekomendasi Penanganan</h4>
                     <ul class="breadcrumbs">
                         <li class="nav-home">
                             <a href="#">
@@ -26,7 +26,7 @@
                             <i class="flaticon-right-arrow"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Rekomendasi Keluhan Sakit</a>
+                            <a href="#">Rekomendasi Penanganan</a>
                         </li>
                     </ul>
                 </div>
@@ -35,10 +35,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="d-flex align-items-center">
-                                    <h4 class="card-title">Rekomendasi Keluhan Sakit</h4>
+                                    <h4 class="card-title">Rekomendasi Penanganan</h4>
                                     <button class="btn btn-secondary btn-round ml-auto" data-toggle="modal" data-target="#addCriteria">
                                         <i class="fa fa-plus mr-2"></i>
-                                        Tambah Rekomendasi Keluhan Sakit
+                                        Tambah Rekomendasi Penanganan
                                     </button>
 
                                     <div class="modal fade" id="addCriteria" tabindex="-1" role="dialog" aria-hidden="true">
@@ -51,7 +51,7 @@
                                                     <div class="modal-header no-bd">
                                                         <h5 class="modal-title">
                                                             <strong>
-                                                                Form Tambah Rekomendasi Keluhan Sakit
+                                                                Form Tambah Rekomendasi Penanganan
                                                             </strong>
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -74,16 +74,22 @@
                                                             </div>
                                                         </div>
 
+                                                        @php $no = 1; @endphp
                                                         @foreach ($criterias as $criteria)
                                                             <div class="form-check">
-                                                                <label>{{ $criteria->criteria }}</label><br/>
+                                                                <label>{{ $no++ . '. ' . $criteria->criteria }}</label><br/>
 
-                                                                @foreach ($criteria->sub_criterias as $sub_criteria)
-                                                                    <label class="form-radio-label">
-                                                                        <input class="form-radio-input" type="radio" name="sub_criteria_id_{{ $sub_criteria->id }}" value="{{ $sub_criteria->id }}">
-                                                                        <span class="form-radio-sign">{{ $sub_criteria->sub_criteria }}</span>
-                                                                    </label>
+                                                                <ul style="list-style: none; ">
+                                                                    @foreach ($criteria->sub_criterias as $sub_criteria)
+                                                                    <li>
+                                                                        <label class="form-radio-label">
+                                                                            <input class="form-radio-input" type="radio" name="sub_criteria[sub_criteria_{{ $sub_criteria->id }}]" value="{{ $sub_criteria->id }}">
+                                                                            <span class="form-radio-sign">{{ $sub_criteria->sub_criteria }}</span>
+                                                                        </label>
+                                                                    </li>
                                                                 @endforeach
+                                                                </ul>
+
                                                             </div>
                                                         @endforeach
 
@@ -109,9 +115,8 @@
                                             <tr>
                                                 <th width="50px">No.</th>
                                                 <th>Nama Pasien</th>
-                                                <th>Sakit Yang Dialami</th>
                                                 <th>Keluhan</th>
-                                                <th>Solusi Yang Disarankan</th>
+                                                <th>Tanggal</th>
                                                 <th width="50px">Aksi</th>
                                             </tr>
                                         </thead>
@@ -121,21 +126,18 @@
                                                 <tr>
                                                     <td>{{ $no++ }}</td>
                                                     <td>{{ $complaint->user->name }}</td>
-                                                    <td>{{ $complaint->disease->disease }}</td>
                                                     <td>{{ $complaint->description }}</td>
-                                                    <td>
-                                                        <ul>
-                                                            @foreach ($complaint->disease->prevention as $prevention)
-                                                                <li>{{ $prevention->prevention }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </td>
+                                                    <td>{{ \Carbon\Carbon::parse($complaint->created_at)->format('d F Y') }}</td>
                                                     <td>
                                                         <form action="{{ route('complaint.destroy', \Crypt::encrypt($complaint->id)) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
 
                                                             <div class="form-button-action">
+                                                                <a href="{{ route('complaint.show', \Crypt::encrypt($complaint->id)) }}" class="btn btn-link btn-primary">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </a>
+
                                                                 <button type="submit" class="btn btn-link btn-danger">
                                                                     <i class="fa fa-times"></i>
                                                                 </button>

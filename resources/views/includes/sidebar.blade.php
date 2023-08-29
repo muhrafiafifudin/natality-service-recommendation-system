@@ -77,7 +77,7 @@
                 <li class="nav-item {{ request()->is('keluhan-sakit') ? 'active' : '' }}">
                     <a href="{{ route('complaint.index') }}">
                         <i class="fas fa-th-list"></i>
-                        <p>Rekomendasi Pelayanan</p>
+                        <p>Rekomendasi Penanganan</p>
                     </a>
                 </li>
             </ul>

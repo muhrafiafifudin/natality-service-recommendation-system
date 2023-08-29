@@ -17,4 +17,9 @@ class SubCriteria extends Model
     {
         return $this->belongsTo(Criteria::class, 'criteria_id');
     }
+
+    public function prevention()
+    {
+        return $this->hasOne(Prevention::class);
+    }
 }

@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Result Complaint
     Route::group(['prefix' => 'keluhan-sakit', 'as' => 'complaint.'], function () {
         Route::get('/', 'App\Http\Controllers\Result\ComplaintController@index')->name('index');
+        Route::get('/{complaint}', 'App\Http\Controllers\Result\ComplaintController@show')->name('show');
         Route::post('/', 'App\Http\Controllers\Result\ComplaintController@store')->name('store');
         Route::delete('/{complaint}', 'App\Http\Controllers\Result\ComplaintController@destroy')->name('destroy');
     });
