@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Models\Prevention;
+use App\Models\SubCriteria;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Crypt;
@@ -12,15 +13,16 @@ class PreventionController extends Controller
     public function index()
     {
         $preventions = Prevention::all();
+        $sub_criterias = SubCriteria::all();
 
-        return view('pages.main.prevention', compact('preventions'));
+        return view('pages.main.prevention', compact('preventions', 'sub_criterias'));
     }
 
     public function store(Request $request)
     {
         try {
             $prevention = new Prevention();
-            $prevention->disease_id = $request->disease_id;
+            $prevention->sub_criteria_id = $request->sub_criteria_id;
             $prevention->prevention = $request->prevention;
             $prevention->save();
 
@@ -36,7 +38,7 @@ class PreventionController extends Controller
             $id = Crypt::decrypt($id);
 
             $prevention = Prevention::findOrFail($id);
-            $prevention->disease_id = $request->disease_id;
+            $prevention->sub_criteria_id = $request->sub_criteria_id;
             $prevention->prevention = $request->prevention;
             $prevention->update();
 

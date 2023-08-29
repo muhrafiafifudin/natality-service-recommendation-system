@@ -63,8 +63,18 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form-group">
-                                                            <label for="prevention">Pencegahan Penyakit</label>
-                                                            <input type="text" class="form-control" name="prevention" placeholder="Masukkan Pencegahan Penyakit">
+                                                            <label for="criteria">Sub Kriteria</label>
+                                                            <select class="form-control input-square" id="squareSelect" name="sub_criteria_id">
+                                                                <option>Pilih Sub Kriteria</option>
+
+                                                                @foreach ($sub_criterias as $sub_criteria)
+                                                                    <option value="{{ $sub_criteria->id }}">{{ $sub_criteria->sub_criteria }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="prevention">Saran Pelayanan</label>
+                                                            <textarea class="form-control" name="prevention" rows="5"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer no-bd">
@@ -142,8 +152,18 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="form-group">
-                                                                <label for="prevention">Pencegahan Penyakit</label>
-                                                                <input type="text" class="form-control" name="prevention" value="{{ $prevention->prevention }}" placeholder="Masukkan Pencegahan Penyakit">
+                                                                <label for="criteria">Sub Kriteria</label>
+                                                                <select class="form-control input-square" id="squareSelect" name="sub_criteria_id">
+                                                                    <option>Pilih Sub Kriteria</option>
+
+                                                                    @foreach ($sub_criterias as $sub_criteria)
+                                                                        <option value="{{ $sub_criteria->id }}" {{ $prevention->sub_criteria_id == $sub_criteria->id ? 'selected' : '' }}>{{ $sub_criteria->sub_criteria }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="prevention">Saran Pelayanan</label>
+                                                                <textarea class="form-control" name="prevention" rows="5">{{ $prevention->prevention }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer no-bd">
